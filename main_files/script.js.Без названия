@@ -1,0 +1,1020 @@
+var server_template = '<div class="item item-%s">' + 
+							'<span href="#" rel="%id">' +
+								'<span class="name">%n</span>' +
+								'<span class="peoples %sr"><span class="current">%cp</span>/%mp</span>' +
+								'<div class="clear"></div>' +
+							'</span>' +
+						'</div>';
+
+var animation_block = false;
+
+function hideTail(list){
+	if(curTail == list.length){
+		$('.features-gallery .second-list').hide();
+		curTail = 0;
+	}
+	else{
+		list.eq(curTail).fadeOut(50, function(){
+			curTail++;
+			hideTail(list)
+		});
+		
+	}
+}
+var curTail = 0;
+$(document).ready(function(){
+	
+	var featuresList = $('.features-gallery img');
+	var featuresGallery = $('.features-gallery');
+	if(featuresList.length > 0){
+		featuresList.remove();
+		featuresGallery.append('<div class="first-list"></div><div class="second-list"></div>')
+		
+		featuresGallery.find('.second-list').hide();
+		
+		var curFeat = 0;
+		featuresGallery.find('.first-list').css('background-image', 'url(' +featuresList.eq(curFeat).attr('src')+ ')');
+		var featuresTimer = setInterval(function(){
+			
+			var tails = '';
+			for(var j=0; j<5; j++){
+				for(var i=0; i<4; i++){
+					tails += '<div class="tail" style="background-position:  -' + i * 50 + 'px -' + j * 50 + 'px; left:' + i * 50 + 'px; top:' + j * 50 + 'px;"></div>';
+				}
+			}
+			featuresGallery.find('.second-list').html(tails);
+			featuresGallery.find('.second-list .tail').css('background-image', 'url(' +featuresList.eq(curFeat).attr('src')+ ')');
+			featuresGallery.find('.second-list').show();
+			
+			curFeat ++;
+			if(curFeat == featuresList.length) curFeat = 0;
+			featuresGallery.find('.first-list').css('background-image', 'url(' +featuresList.eq(curFeat).attr('src')+ ')');
+			
+			var tailsList = featuresGallery.find('.second-list .tail');
+			
+			hideTail(tailsList);
+			
+		}, 10000)
+	}
+	var banner_block = $('#banner-block');
+	var rotation_block = banner_block.find('.rotation-block');
+	var count = banner_block.find('.item').length;
+	var width = banner_block.width();
+	rotation_block.width(width * count);
+	
+	var dots = banner_block.find('.dots');
+	
+	for(var i=1; i<=count;i++ ){
+		var pic = i==1 ? "full" : "";
+		dots.append('<a href="#" rel="' + i + '" class="empty '  + pic  + '"></a>');
+		dots.find('a[rel="' + i + '"]').bind('click', function(){
+			if(!animation_block){
+				var left = 0 - width * ($(this).attr('rel') - 1);
+				anim_left(rotation_block, left);
+				$(this).parent().find('.full').removeClass('full');
+				$(this).addClass('full');
+				clearTimeout(animate_banner_interval);
+				animate_banner(rotation_block, width, count, dots);
+			}
+			return false;
+		});
+	}
+	
+	$('.arrow-left a').bind('click', function(){
+		var curr = $('.dots .full').eq(0);
+		if(!animation_block && curr.prev().length > 0){
+			var left = 0 - width * (curr.attr('rel') - 2);
+			anim_left(rotation_block, left);
+			curr.removeClass('full');
+			curr.prev().addClass('full');
+			clearTimeout(animate_banner_interval);
+			animate_banner(rotation_block, width, count, dots);
+		}
+		return false;
+	});
+	$('.arrow-right a').bind('click', function(){
+		var curr = $('.dots .full').eq(0);
+		if(!animation_block && curr.next().length > 0){
+			var left = 0 - width * (curr.attr('rel'));
+			anim_left(rotation_block, left);
+			curr.removeClass('full');
+			curr.next().addClass('full');
+			clearTimeout(animate_banner_interval);
+			animate_banner(rotation_block, width, count, dots);
+		}
+		return false;
+	});
+	animate_banner(rotation_block, width, count, dots);
+	check_arrows();
+	
+	
+	comments_list = $('.comment-own');
+	$('.blog-navi a').eq(0).attr('title', 'ctrl + ↑');
+	$('.blog-navi a').eq(1).attr('title', 'ctrl + ↓');
+
+	if(comments_list.length > 0){
+		$(window).bind('keyup', function(event){
+			if(event.ctrlKey){
+				if(event.which == 40 || event.keyCode == 40)
+					next_comment();
+				else if(event.which == 38 || event.keyCode == 38)
+					prev_comment();
+			}
+		})
+	}
+	else{
+		$('.blog-navi').hide();
+	}
+	
+});
+
+var animate_banner_interval;
+function animate_banner(rotation_block, width, count, dots){
+	animate_banner_interval = setInterval(function(){
+		if(!animation_block && rotation_block.css('left')){
+			var left = 0 - rotation_block.css('left').replace('px', '');
+			if(!left){
+				left = 0;
+			}
+			var current = left / width + 1;
+			
+			if(current == count){
+				left = 0;
+				current = 1;
+			}
+			else{
+				left = 0 - width * current;
+				current++;
+			}
+			dots.find('.full').removeClass('full');
+			dots.find('a[rel="' + current + '"]').addClass('full');
+			anim_left(rotation_block, left);
+			check_arrows();
+		}
+	}, 10000);
+	check_arrows();
+}
+
+function delete_comment(url_delete, obj){
+	$.get(url_delete,function(){
+		$('#comment-' + $(obj).attr('rel') + ' .block').html('Комментарий удален');
+	});
+}
+
+function restore_comment(url_restore, obj){
+	$.get(url_restore,function(){
+		$('#comment-' + $(obj).attr('rel') + ' .block').html('Комментарий восстановлен');
+	});
+}
+
+function show_add_comment(obj){
+	if($('#answer-form')){
+		$('#answer-form').remove();
+	}
+		
+	var parent = $(obj).parents('.block');
+	$('#formatTools').html(formatToolsSerialize);
+	var form = $('#form-panel').clone();
+	form.attr('id', 'answer-form');
+	parent.after(form);
+	form.find('form').eq(0).append('<input type="hidden" name="comment_id" value="' + $(obj).attr('rel') + '"/>')
+	form.show();
+}
+
+function showMoreBlog(obj){
+	$(obj).parent().hide();
+	$(obj).parent().prev().hide();
+	$(obj).parent().next().show();
+}
+
+function anim_left(block, left){
+	animation_block = true;
+	block.animate({left: left}, function(){
+		animation_block = false;
+		
+	});
+}
+
+function check_arrows(){
+	var curr = $('.dots .full').eq(0);
+	if(curr.prev().length == 0){
+		$('.arrow-left').css('visibility', 'hidden');
+	}
+	else{
+		$('.arrow-left').css('visibility', 'visible');
+	}
+	if(curr.next().length == 0){
+		$('.arrow-right').css('visibility', 'hidden');
+	}
+	else{
+		$('.arrow-right').css('visibility', 'visible');
+	}
+}
+
+var last_server;
+var _select_server = 1
+var last_log = 0
+var players = new Array()
+var last_server_selected = null
+
+function get_state(value) {
+	return value ? "http://icons.hiasm.com/img/1/172_04.png" : "http://icons.hiasm.com/img/1/176_08.png"
+}
+
+function check_state() {
+	$.get("/state/" + _select_server + "/list", function(data){
+		obj = eval("a = " + data.replace(/\n/gi, ""))
+		$("#server-online").attr("src", get_state(obj.status))
+		$("#server-online-text").html(obj.status)
+		$("#con-ver").html(obj.version + "v")
+		$("#svr-ver").html(obj.server + "v")
+
+		$("#chat-login").html(obj.user ? obj.user : '<a class="btn" target="_blank" href="http://forum.minecraft-galaxy.ru/guilogin/">Вход</a>')
+		$("#commands").css("display", obj.user ? "block" : "none")
+
+		plist = ""
+		players = obj.players
+		for(i = 0; i < players.length; i++) {
+			plist += '<div class="' + players[i].group + '">' + players[i].login + "</div>"
+		}
+		$("#server-players").html(players.length == 0 ? "(no players)" : plist)
+		$("#server-total").html(obj.name + ": " + players.length)
+	});
+}
+
+function select_server(id) {
+	_select_server = id
+	check_state()
+	$("#messages").html("")
+	last_log = 0
+	load_log()
+	
+	if(last_server_selected){
+		last_server_selected.className = "item"
+		last_server_selected = document.getElementById("s" + id)
+		last_server_selected.className = "item-sel"
+	}
+}
+
+function replace_users(text) {
+	for(var i = 0; i < players.length; i++) {
+		if(players[i].login != "ass")
+			text = text.replace(players[i].login, '<span class="' + players[i].group + '">' + players[i].login + '</span>')
+	}
+	return text
+}
+
+function load_log() {
+	$.get("/console/" + _select_server + "/list?l=" + last_log, function(data) {
+		arr = eval("a = " + data)
+		msg = document.getElementById("messages")
+		$("warn").html("")
+		insert = false
+		for(item in arr) {
+			last_log = Math.max(arr[item].id, last_log)
+
+			d = document.createElement("div");
+			if(arr[item].value.indexOf("Connected players:") != -1 || arr[item].value.indexOf("Disconnecting") != -1) {
+				continue;
+			}
+			else if(arr[item].value.indexOf("logged in") != -1)
+				msg_type = ""; //msg-login
+			else if(arr[item].value.indexOf("[CONSOLE]") != -1)
+				msg_type = "msg-console";
+			else if(arr[item].value.indexOf("[INFO] <") != -1)
+				msg_type = "msg-say";
+			else if(arr[item].value.indexOf("[WARNING]") != -1) {
+				msg_type = "msg-warn";
+				if(arr[item].value.indexOf("is the server overloaded?") != -1) {
+					$("warn").html("overload")
+					continue;
+				}
+			}
+			else
+				msg_type = ""
+			if(msg_type) {
+				if(arr[item].value.substring(0, 4) == "2011")
+					arr[item].value = arr[item].value.substring(11)
+				d.innerHTML = '<span class="msg-text ' + msg_type + '">' + replace_users(arr[item].value.replace(/\</gi, "&lt;").replace(/\:\)/gi, "<img src=\"http://hiasm.com/xx/smilies/icon_smile.gif\">")) + '</span>'
+				msg.insertBefore(d, null)
+				insert = true
+			}
+		}
+		if(insert)
+			msg.scrollTop = 32768
+	});
+	set_time()
+}
+
+function two_dig(v) { return (v < 10) ? "0" + v : v }
+function set_time() {
+	d = new Date()
+	$("#time").html(two_dig(d.getHours()) + ":" + two_dig(d.getMinutes()) + ":" + two_dig(d.getSeconds()))
+}
+
+function send_msg() {
+	msg = $("#msg")
+	if(msg.val()) {
+		$.get("/say/" + _select_server + "/msg?t=" + encodeURIComponent(msg.val()), function(data) {
+			if(data) {
+				alert(data)
+			}
+			load_log()
+		})
+	}
+	msg.val("")
+}
+
+function init() {
+	setInterval("check_state()", 30000)
+	setInterval("load_log()", 20000)
+}
+
+function key_down(key) {
+	if(key == 13)
+		send_msg()
+}
+
+function clear_log() {
+	$("#messages").html("")
+}
+
+function switchTable(arg1) {
+  ln4021 = $(arg1).next();
+  if(ln4021.css('display') != "block") {
+    ln4021.slideDown("fast")
+    $(arg1).find('._plus').attr('src', "http://forum.mcgl.ru/img/icon_minus.gif");
+  }
+  else {
+    ln4021.slideUp("fast")
+    $(arg1).find('._plus').attr('src', "http://forum.mcgl.ru/img/icon_plus.gif");
+  }
+}
+
+function switchSpoilerTree(arg1) {
+  ln4021 = $(arg1).parent().next();
+  if(ln4021.css('display') != "block") {
+    ln4021.slideDown("fast")
+    $(arg1).attr('src', "http://forum.mcgl.ru/img/icon_minus.gif");
+  }
+  else {
+    ln4021.slideUp("fast")
+    $(arg1).attr('src', "http://forum.mcgl.ru/img/icon_plus.gif");
+  }
+}
+
+function show_preview(obj, url) {
+	if(!document.getElementById("img-preview-bk")) {
+		w = $('body').width()
+		h = $(window).height()
+		$('body').append('<div class="preview" id="img-preview-bk" style="width: ' + w + 'px; height: ' + h + 'px;"></div>');
+		$('body').append('<div class="preview-images" id="preview-images" style="width: ' + w + 'px; height: ' + h + 'px;"></div>');
+	}
+	cb = document.createElement("img")
+	if(url)
+		cb.src = url;
+	else
+		cb.src = obj.src.substr(0, obj.src.length-2);
+	cb.style.display = "none"
+	cb.style.maxWidth = (w - 200) + "px"
+	cb.style.maxHeight = (h - 200) + "px"
+	cb.className = "preview-image"
+	$(cb).load(function(){
+		if(h - 200 > $(this).height())
+			$(this).css('top', Math.round((h - $(this).height())/2))
+		else
+			$(this).css('top', 100)
+	})
+	$('#preview-images').append(cb)
+
+	$("#preview-images, #img-preview, .preview-image").click(function(){
+		$("#img-preview-bk, #preview-images").hide();
+		$("#preview-images").html('')
+	})
+	
+	$("#img-preview-bk").show()
+	$("#preview-images").show()
+	$(".preview-image").fadeIn();
+}
+
+var tip_url = ""
+var tip_timer_id = 0
+var last_tip = null
+function showtip(type, obj, event) {
+	div = get_user_info_tip(event)
+	
+	tip_url = "/object/" + obj + "/" + type
+
+	show_user_info_tip(_show_tooltip)
+}
+
+function hidetip() {
+	clearTimeout(tip_timer_id)
+	tip_timer_id = 0
+	if(last_tip != null) {
+		$(last_tip).hide("fade");
+		last_tip = null
+	}
+}
+
+function show_user_info_tip(proc) {
+	last_tip = div
+
+	tip_timer_id = setTimeout(proc, 500)
+}
+
+function get_user_info_tip(event) {
+	e = window.event ? window.event : event
+
+	hidetip()
+	div = document.getElementById("usertip")
+	if(!div) {
+		div = document.createElement("div")
+		div.id = "usertip"
+		div.className = "tooltip user"
+		document.getElementsByTagName("body")[0].appendChild(div)
+	}
+	else
+		$(div).hide();
+	
+	div.style.left = (e.clientX + 10) + "px"
+	div.style.top = (e.clientY + 10) + "px"
+	
+	return div
+}
+
+function _show_tooltip() {
+	ajax_get_request(tip_url, on_object_read)
+}
+
+function ajax_get_request(url, proc) {
+	req = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+	req = new XMLHttpRequest();
+	req.onreadystatechange = proc;
+	req.open("GET",url, true);
+	window.XMLHttpRequest ? req.send(null) : req.send();
+	
+	return req
+}
+
+function on_object_read() {
+	if(this.readyState == 4 && this.status == 200) {
+		obj = eval("obj = " + this.responseText)
+		if(obj._type == 1){
+			last_tip.innerHTML = '\
+				<table class="tt-user" width="100%">\n\
+					<tr>\n\
+						<td colspan="2" class="title">' + obj.login + ' <span class="vote-pos">' + level(obj.make) + '</span>/<span class="vote-neg">' + level(obj.crush) + '</span></td>\n\
+					</tr>\n\
+					<tr>\n\
+						<td class="avatar">' + (obj.avatar ? '<img src="/img/avatars/' + obj.id + '"/>' : '<img src="/img/prof/' + obj.prof + '.png"/>') + '</td>\n\
+						<td>\n\
+							<div>Регистрация: ' + obj.register + '</div>\n\
+							<div>Активность: ' + obj.last_login + '</div>\n\
+							<div>Банов: ' + obj.bans + '/' + obj.bansall + '</div>\n\
+							<div>Рейтинг: ' + obj.rating + '</div>\n\
+							<div>Сообщений: ' + obj.posts + '</div>\n\
+						</td>\n\
+					</tr>\n\
+				</table>'
+		}
+		if(obj._type == 2){
+			last_tip.innerHTML = '\
+					<div>ID: <span class="vip">' + obj.id + '</span> Название: <span class="vip">' + obj.title + '</span></div><br/>\
+					<div>' + obj.info + '</div>\
+				'
+		}
+		if(obj._type == 3){
+			last_tip.innerHTML = '\
+				<table class="tt-user" width="100%">\n\
+					<tr>\n\
+						<td colspan="2" class="title">' + obj.name + '</td>\n\
+					</tr>\n\
+					<tr>\n\
+						<td class="avatar">' + (obj.icon ? '<img src="/files/teams/' + obj.id + '.png"/>' : '' ) + '</td>\n\
+						<td>\n\
+							<div>Лидер: ' + obj.leader + '</div>\n\
+							<div>Регистрация: ' + obj.time + '</div>\n\
+							<div>Сообщений: ' + obj.posts + '</div>\n\
+							<div>Тем: ' + obj.topics + '</div>\n\
+							<div>Публичность: ' + (obj.public ? "открытое" : "закрытое") + '</div>\n\
+						</td>\n\
+					</tr>\n\
+				</table>'
+		}
+		$(last_tip).show("fade");
+	}
+}
+
+function add_post(id) {
+	msgform = document.getElementById("form-panel");
+	msgform.style.display = "block"
+
+	obj = document.getElementById("topic-id")
+	if(obj) obj.value = id
+
+	document.getElementById("tools").style.display = "none"
+	
+	editControl = "message"
+	document.getElementById("formatTools").innerHTML = formatToolsSerialize
+}
+
+function setAllSelection(id){ 
+	var target = document.getElementById(id);
+	var rng, sel;
+	if (document.createRange) {
+		rng = document.createRange();
+		rng.selectNode(target)
+		sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(rng);
+	} 
+	else {
+		var rng = document.body.createTextRange();
+		rng.moveToElementText(target);
+		rng.select();
+	}
+}
+function quote(id, user){
+	add_post();
+	if(selectText(document.getElementById(editControl)) == "")
+		setAllSelection(id);
+	onPaste("[quote=" + user + "]%s[/quote]\n|");
+}
+
+function onPaste(arg1) {
+	var t = document.getElementById(editControl);
+	res4094 = arg1.replace('%s', selectText(t));
+	var curPos = res4094.indexOf('|');
+	res4094 = res4094.replace('|', '');
+	t.focus();
+	var start = getSelectionStart(t)  + curPos;
+	setSelectText(t,res4094)
+	t.setSelectionRange(start,start);
+}
+
+function getSelectionStart(el){
+	if (el.selectionStart) { 
+		return el.selectionStart; 
+	} 
+	else if (document.selection) { 
+		el.focus(); 
+		
+		var r = document.selection.createRange(); 
+		if (r == null) { 
+		  return 0; 
+		} 
+		
+		var re = el.createTextRange(), 
+		    rc = re.duplicate(); 
+		re.moveToBookmark(r.getBookmark()); 
+		rc.setEndPoint('EndToStart', re); 
+		
+		return rc.text.length; 
+	}
+	return 0;
+}
+
+function search_user() {
+	l = document.getElementById("login").value
+	ajax_get_request("finduser.php?l=" + l, on_find_user)
+}
+
+function pasteuser(id, login) {
+	onPaste("[user=" + id + "]" + login + "[/user]|")
+}
+var editControl = "message"
+function edit_text(url_load, url_save, id) {
+	p = document.getElementById(id)
+	p["bp"] = p.innerHTML
+	p["url_save"] = url_save
+	editControl = "ed-" + id
+	p.innerHTML = formatToolsSerialize + '<textarea class="post-editor" id="ed-' + id + '"></textarea><div class="post-editor-cmd"><a href="javascript: edit_text_save(\'' + id + '\');">сохранить</a> | <a href="javascript: edit_text_cancel(\'' + id + '\');">отменить</a></div>'
+	r = ajax_get_request(url_load, on_edit_text)
+	r['pid'] = id
+	bindText();
+}
+
+function selectText(obj) {
+	  if(document.selection) { // IE, Opera
+	    return document.selection.createRange().text
+	  }else {
+	    sel = document.getSelection().toString();
+	    return (sel ? sel : obj.value.substr(obj.selectionStart,obj.selectionEnd - obj.selectionStart))
+	  }
+	}
+function setSelectText(obj, text) {
+  if(document.selection) { // IE, Opera
+    document.selection.createRange().text = text
+  } else {
+    b = obj.value.substr(0, obj.selectionStart)
+    a = obj.value.substr(obj.selectionEnd)
+    obj.value = b + text + a
+  }
+}
+
+function show_smiles_dialog() {
+	cb = document.getElementById("smiliesdlg")
+	if(!cb) {
+		cb = document.createElement("div")
+		cb.id = "smiliesdlg"
+		cb.style.display = "none"
+		$('body').append(cb)
+		for(i = 1; i <= 11; i++) {
+			$(cb).append('<img class="smile" title="[img]/img/ns/' + i + '.gif[/img]" src="/img/ns/' + i + '.gif" onclick=\'onPaste(this.title + "|"); $("#smiliesdlg").dialog("close");\'/>')
+		}
+	}
+	
+	$(cb).dialog({
+		title:"Вставка анимационного смайла",
+		resizable:false,
+		width: 400,
+		height: 220,
+		zIndex: 10,
+		buttons: [
+			{
+				text: "Закрыть",
+				click: function() {$(this).dialog("close");}
+			}
+		]
+	})
+}
+
+var current_comment = -1;
+var comments_list;
+function next_comment(){
+	if(comments_list.length > 0){
+		if(current_comment == comments_list.length - 1)
+			current_comment = 0;
+		else
+			current_comment++;
+		
+		$(document).scrollTop(comments_list.eq(current_comment).offset().top);
+	}
+}
+
+function prev_comment(){
+	if(comments_list.length > 0){
+		if(current_comment == 0)
+			current_comment = comments_list.length - 1;
+		else
+			current_comment--;
+		$(document).scrollTop(comments_list.eq(current_comment).offset().top);
+	}
+}
+
+function edit_text_cancel(id) {
+	p = document.getElementById(id)
+	p.innerHTML = p["bp"]
+}
+
+function on_edit_text() {
+	if(this.readyState == 4 && this.status == 200) {
+		p = document.getElementById("ed-" + this.pid)
+		p.value = this.responseText
+	}
+}
+
+function on_edit_text_save(obj) {
+	p = document.getElementById(obj.pid)
+	p.innerHTML = obj.responseText
+}
+
+function edit_text_save(id) {
+	editor = document.getElementById("ed-" + id)
+	p = document.getElementById(id)
+	r = ajax_post_request(p["url_save"], "text=" + encodeURIComponent(editor.value), on_edit_text_save)
+	r['pid'] = id
+	edit_text_cancel(id)
+}
+
+function bindText(){
+	$('textarea').bind('focus', function(){
+		canGoTo = false;
+	});
+	$('textarea').bind('blur', function(){
+		canGoTo = true;
+	});
+	
+	$('input[type=text]').bind('focus', function(){
+		canGoTo = false;
+	});
+	$('input[type=text]').bind('blur', function(){
+		canGoTo = true;
+	});
+}
+function ajax_post_request(url, data, callback) {
+	req = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+	req.onreadystatechange = proc_answer;
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	req.send(data);
+	req.callback = callback;
+	return req
+}
+
+function proc_answer() {
+	if(this.readyState == 4 && this.status == 200) {
+    	this.callback(this) 
+	}
+}
+
+function edit_title(update, obj, pattern) {
+	if(!pattern)
+		pattern = '(не указан)';
+	//alert(parent)
+	parentd = obj.parentNode.parentNode
+	title = getElementById(obj.parentNode, "edit-title")
+	//obj.parentNode.style.display = "none"
+	div  = document.createElement("div")
+	div['oldBody'] = obj.parentNode.parentNode.innerHTML
+	div['update'] = update
+	div.innerHTML = '<input type="edit" value=\'' + (title.innerHTML ==  pattern? '' : title.innerHTML) + '\' onkeydown="end_title_edit(this, event)"/>'
+	parentd.innerHTML = ''
+	parentd.appendChild(div)
+	div.childNodes[0].focus()
+}
+
+function getElementById(parentd, id) {
+	var i = 0
+	for(i = 0; i < parentd.childNodes.length; i++) {
+		if(parentd.childNodes[i].id == id)
+			return parentd.childNodes[i]
+		obj = getElementById(parentd.childNodes[i], id)
+		if(obj)
+			return obj;
+	}
+	return null
+}
+
+function end_title_edit(obj, event) {
+	e = window.event ? window.event : event
+	if(e.keyCode == 13 || e.keyCode == 27) {
+		parentd = obj.parentNode.parentNode
+		div = obj.parentNode
+		parentd.innerHTML = div.oldBody
+		if(e.keyCode == 13) {
+			title = getElementById(parentd, "edit-title")
+			title.innerHTML = obj.value;
+			ajax_post_request(div.update, "title=" + encodeURIComponent(obj.value), on_end_tag_edit)
+		}
+	}
+}
+
+function on_end_tag_edit(obj) {
+
+}
+
+function on_change_chbox(obj) {
+
+}
+
+function change_chbox(update, value) {
+	ajax_post_request(update, "v=" + (value ? 1 : 0), on_change_chbox)
+}
+
+function change_listbox(update, value) {
+	ajax_post_request(update, "v=" + value, on_change_chbox)
+}
+
+function change_lbox(update, value) {
+	ajax_post_request(update, "v=" + value, on_change_lbox)
+}
+
+function on_change_lbox(obj) {
+
+}
+function finduser() {
+	//window.open("/finduser.html", "finduser", "menubar=no,location=no,width=480,height=370")
+	onuserselect('', tag_user_select);
+}
+
+function youtube_paste() {
+	cb = document.getElementById("youtubedlg")
+	if(!cb) {
+		cb = document.createElement("div")
+		cb.id = "youtubedlg"
+		cb.style.display = "none"
+		$('body').append(cb)
+		$(cb).append('Введите уникальный идентификатор видео (например, 5Dsddo55gSw): <input class="text" id="yt-url"/>')
+		$(cb).append('<br/><br/><label><input class="checkbox" type="checkbox" id="yt-adult"/> видео содержит материалы для лиц от 18 лет (мат, насилие и т.п.)</label>')
+		$(cb).append('<br/><br/>Предпросмотр:<div class="yt-preview"></div>')
+		$('#yt-url').keyup(function(){
+			$('.yt-preview').html("<iframe width=\"600\" height=\"400\" src=\"http://www.youtube.com/embed/" + $(this).val() + "\" frameborder=\"0\" allowfullscreen></iframe>")
+		})
+	}
+	
+	$(cb).dialog({
+		title:"Вставка ролика с YouTube",
+		resizable:false,
+		width: 630,
+		height: 630,
+		zIndex: 10,
+		buttons: [
+			{
+				text: "Отменить",
+				click: function() {
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: "Вставить",
+				click: function() {
+					if($('#yt-adult').attr('checked'))
+						onPaste("[youtube adult=Контент не для всех.]" + $('#yt-url').val() + "[/youtube]|");
+					else
+						onPaste("[youtube]" + $('#yt-url').val() + "[/youtube]|");
+					$(this).dialog("close");
+				}
+			}
+		]
+	})
+}
+
+function achive_paste() {
+	cb = document.getElementById("achivedlg")
+	if(!cb) {
+		cb = document.createElement("div")
+		cb.id = "achivedlg"
+		cb.style.display = "none"
+		$('body').append(cb)
+		$(cb).append('Введите короткое название достижения: <input class="text" id="ah-name"/>')
+		$(cb).append('<br/><br/>Введите описание достижения: <input class="text" id="ah-info"/>')
+		$(cb).append('<br/><br/>Введите полученный опыт (целое число): <input class="text" id="ah-exp"/>')
+		$(cb).append('<br/><br/>Предпросмотр:<div class="ah-preview"></div>')
+		$('#ah-exp,#ah-name,#ah-info').keyup(function(){
+			$('.ah-preview').html("<table class=achive><tr>" +
+						"<td rowspan=2 class=\"img frame\"><img src=\"http://icons.hiasm.com/img/8/4519_icon95.ico\"></td>" +
+						"<td class=title>" + $("#ah-name").val() + "</td><td rowspan=2 class=score>+" + $("#ah-exp").val() + "XP</td>" +
+					"</tr><tr><td class=descr>" + $("#ah-info").val() + "</td></tr></table>")
+			})
+	}
+	
+	$(cb).dialog({
+		title:"Вставка достижения",
+		resizable:false,
+		width: 500,
+		height: 350,
+		zIndex: 10,
+		buttons: [
+			{
+				text: "Отменить",
+				click: function() {
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: "Вставить",
+				click: function() {
+					onPaste("[achieve=" + $("#ah-name").val() + " score=+" + $("#ah-exp").val() + "XP]" + $("#ah-info").val() + "[/achieve]|")
+					$(this).dialog("close");
+				}
+			}
+		]
+	})
+}
+
+function image_paste() {
+	cb = document.getElementById("imagedlg")
+	if(!cb) {
+		cb = document.createElement("div")
+		cb.id = "imagedlg"
+		cb.style.display = "none"
+		$('body').append(cb)
+		$(cb).append('Введите URL картинки(например: http://mcgl.ru/favicon.ico): <input class="text" id="img-url"/>')
+		$(cb).append('<br/><br/>Введите комментарий к картинке(не обязательно): <input class="text" id="img-info"/>')
+		$(cb).append('<br/><br/>Предпросмотр:<div class="img-preview" style="overflow: auto; height: 350px;"></div>')
+		$('#img-url,#img-info').keyup(function(){
+			s = ""
+			if($('#img-info').val()) {
+				s = "<div class=\"scroll\"><div class=\"scroll-head\" onclick=\"switchTable(this);\"><img src=\"/img/icon_plus.gif\" class=\"_plus\"> " + $('#img-info').val() + "</div><div class=\"scroll-body\">";
+			}
+			s += "<img src=\"" + $('#img-url').val() + "\"/>";
+			if($('#img-info').val()) {
+				s += "</div></div>";
+			}
+			$('.img-preview').html(s)
+		})
+	}
+	
+	$(cb).dialog({
+		title:"Вставка картинки",
+		resizable:false,
+		width: 630,
+		height: 580,
+		zIndex: 10,
+		buttons: [
+			{
+				text: "Отменить",
+				click: function() {
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: "Вставить",
+				click: function() {
+					s = ""
+					if($('#img-info').val()) {
+						s = "[scroll=" + $('#img-info').val() + "]";
+					}
+					s += "[img]" + $('#img-url').val() + "[/img]";
+					if($('#img-info').val()) {
+						s += "[/scroll]";
+					}
+					onPaste(s + "|")
+					$(this).dialog("close");
+				}
+			}
+		]
+	})
+}
+
+function on_find_user() {
+	if(this.readyState == 4 && this.status == 200) {
+		users = document.getElementById("users")
+		arr = eval(this.responseText)
+		text = ""
+		for(var u in arr) {
+			text += '<a href="javascript: pasteuser(' + arr[u].id + ', \'' + arr[u].login + '\');">' + arr[u].login + '</a><br>'
+		}
+		users.innerHTML = text
+	}
+}
+
+function search_user() {
+	l = document.getElementById("login").value
+	ajax_get_request("finduser.php?l=" + l, on_find_user)
+}
+
+function pasteuser(id, login) {
+	onPaste("[user=" + id + "]" + login + "[/user]|")
+}
+
+function onuserselect(id, proc) {
+	$("#user-select").dialog({
+		title:"Выбор пользователя",
+		modal:true,
+		resizable:false,
+		width: 400,
+		buttons: [
+			{
+				text: "Ok",
+				click: function() {
+					$.get('/object/0/9?q='+$("#ui-user-select").val(), function(data){
+						var u = eval(data)[0];
+						selectUserId = u.id;
+						if(proc == field_user_select)
+							proc(id, u.login);
+						else
+							proc(u.id, u.login); 
+						$("#user-select").dialog("close");
+					})
+				}
+			}
+		]
+	})
+	return false
+}
+
+function onitemselect(id, proc) {
+	show_item_select_dialog(function(obj, item_id, item_data){
+		$("#" + id).val(item_id)
+	})
+	return false
+}
+
+function tag_user_select(id, login) {
+	pasteuser(selectUserId, login)
+}
+
+function showPreview(obj){
+	if($('#preview').length == 0)
+		$('body').append('<div id="preview" class="preview-dialog"></div>');
+	$('#preview').html('<img src="/img/ajax-loader.gif"/>');
+	$('#preview').dialog({
+		title:"Предпросмотр сообщения",
+		resizable:false,
+		modal: true,
+		width: 800,
+		height: 500,
+		zIndex: 10,
+		buttons: [
+			{
+				text: "Закрыть",
+				click: function() {$(this).dialog("close");}
+			},
+		]
+	});
+	
+	var val = "";
+	if($(obj).nextAll('textarea').length == 0){
+		val = $('#message').val();
+	}
+	else{
+		val = $(obj).nextAll('textarea').val();
+	}
+	
+	$.post('/main/0/preview', {'text' : val}, function(data){
+		$('#preview').html(data);
+	});
+}

@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0027)http://minecraft-galaxy.ru/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title>Minecraft Galaxy</title>
+			
+			<link rel="stylesheet" href="./main_files/style.css" type="text/css">
+						<link rel="stylesheet" href="./main_files/jquery-ui.css" type="text/css">
+			<link rel="stylesheet" href="./main_files/coinsliderstyles.css" type="text/css">
+			
+			<meta http-equiv="keywords" content="minecraft, майнкрафт, многопользовательская, игра, game, server, сервер, mmorpg, dmh"> 
+			<meta http-equiv="description" content="Галактика Майнкрафт - сервер многопользовательской onine игры Minecraft с множеством новых блоков, расами, профессиями, квестами и другими уникальными дополнениями">
+			<script src="./main_files/cb=gapi.loaded_1" async=""></script><script type="text/javascript" async="" src="./main_files/watch.js.Без названия"></script><script type="text/javascript" async="" src="./main_files/ga.js.Без названия"></script><script src="./main_files/cb=gapi.loaded_0" async=""></script><script src="./main_files/jquery-2.0.3.min.js.Без названия"></script>
+			<script type="text/javascript" src="./main_files/jquery-ui.min.js.Без названия"></script> 
+			<script type="text/javascript" src="./main_files/jquery.autocomplete.js.Без названия"></script>
+			<script type="text/javascript" src="./main_files/script.js.Без названия"></script>
+			<script type="text/javascript" src="./main_files/format.js.Без названия"></script>
+			<script type="text/javascript" src="./main_files/coinslider.min.js.Без названия"></script>
+			<script type="text/javascript" src="./main_files/plusone.js.Без названия" gapi_processed="true"></script> 
+			<meta name="yandex-verification" content="40ceec403cb5b1d8">
+			<meta name="yandex-verification" content="75f4dfd7c80bc984">
+			<meta name="yandex-verification" content="4f06fa6b3657bb75">
+			<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png">
+			<meta name="interkassa-verification" content="eda703bc07d00a11c209a9bffec64411">
+			<script type="text/javascript">
+	
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-22798613-1']);
+			  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+			  _gaq.push(['_trackPageview']);
+	
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+	
+			</script>
+                        
+                        <!--script>
+                        $(document).ready(function(){
+                            var timer = setTimeout(function(){
+                                //console.log(document.location);
+                                if(document.location.search.indexOf('utm') > -1){
+                                    try{
+                                        history.pushState(null, null, document.location.pathname);
+                                        return;
+                                    }catch(e){
+                                        
+                                    }
+                                    window.location.href = document.location.pathname + '#';
+                                }
+                            }, 2000);
+                        });  
+                        </script-->
+		<script src="./main_files/saved_resource"></script><script src="./main_files/saved_resource"></script><script src="./main_files/saved_resource"></script><style type="text/css">/*
+ * contextMenu.js v 1.4.0
+ * Author: Sudhanshu Yadav
+ * s-yadav.github.com
+ * Copyright (c) 2013 Sudhanshu Yadav.
+ * Dual licensed under the MIT and GPL licenses
+**/
+
+.iw-contextMenu {
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10);
+    border: 1px solid #c8c7cc;
+    border-radius: 11px;
+    display: none;
+    z-index: 1000000132;
+    max-width: 300px;
+}
+
+.iw-cm-menu {
+    background: #fff;
+    color: #000;
+    margin: 0px;
+    padding: 0px;
+}
+
+.iw-curMenu {
+}
+
+.iw-cm-menu li {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    list-style: none;
+    padding: 10px;
+    padding-right: 20px;
+    border-bottom: 1px solid #c8c7cc;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    margin: 0;
+    line-height: inherit;
+}
+
+.iw-cm-menu li:first-child {
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+}
+
+.iw-cm-menu li:last-child {
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+    border-bottom: none;
+}
+
+.iw-mOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #FFF;
+    opacity: .5;
+}
+
+.iw-contextMenu li.iw-mDisable {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.iw-mSelected {
+    background-color: #F6F6F6;
+}
+
+.iw-cm-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -5px;
+}
+
+.iw-mSelected > .iw-cm-arrow-right {
+}
+
+/*context menu css end */</style><style type="text/css">@-webkit-keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}
+
+@keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}</style><style type="text/css">/* This is not a zero-length file! */</style></head>
+	
+	<body>
+		<div class="header">
+			<div class="logo"><a href="http://minecraft-galaxy.ru/"><img src="./main_files/logo.png" width="250" alt="Minecraft Galaxy"></a></div>
+			<div class="main-menu">
+				<div class="item"><a href="http://forum.minecraft-galaxy.ru/">Форум</a></div>
+				<div class="item item-second"><a href="http://forum.minecraft-galaxy.ru/wiki/">Вики</a></div>
+				<div class="item item-second"><a href="http://minecraft-galaxy.ru/donate/">Donate</a></div>
+				<div class="item item-second"><a href="http://minecraft-galaxy.ru/download/">Скачать</a></div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="content-top">
+				<div class="monsters-one"></div>
+				<div class="monsters-two"></div>
+				
+			</div>
+			<div class="content-wrapper">
+				
+				
+				<div class="text-zone">
+			
+					<div class="left-block">
+			
+			<div class="block-content">
+				<h2 class="main-title">
+					Ключевые особенности Minecraft Galaxy
+				</h2>
+				<div>
+					<p>Проект MCGL представляет из себя воксельную песочницу с открытым миром (like Minecraft), в которой игрок может делать всё, 
+					что угодно: разрушать окружение, возводить постройки, охотиться на мобов и других игроков, торговать, крафтить, выращивать растения, просто общаться.</p>
+				</div>
+				<div class="features">
+					<p>Среди всего прочего, у нас вы найдете:</p>
+					<ul>
+						<li>множество планет с различными условиями для игры</li>
+						<li>шесть профессий</li>
+						<li>пять рас</li>
+						<li>более десяти видов сетов брони</li>
+						<li>большой выбор оружия</li>
+						<li>кланы</li>
+						<li>система квестов</li>
+						<li>рынки для торговли</li>
+						<li>более двухсот блоков: декор, механизмы, силовые поля, жидкости</li>
+						<li>новые предметы</li>
+						<li>3D аксессуары</li>
+						<li>технологичные конструкции на основе ядерной энергетики</li>
+						<li>регулярные ивенты, конкурсы и викторины, в том числе с уникальными призами</li>
+					</ul>
+						
+					<p><a href="http://minecraft-galaxy.ru/features/">А также многое-многое другое.</a><br>
+					Большое число дополнений реализовано по просьбам игроков, таким образом вы сами можете
+					поучаствовать в развитии игры, предлагая что-то для реализации. Каждому игроку доступно множество
+					майнкрафт серверов с различными условиями игры.</p>
+				</div>
+			</div>
+			
+			<div class="block-content">
+				<h2 class="main-title">
+					Поддержи MCGL в ТОПах и получи ценные призы!
+				</h2>
+				<div class="features">
+					<p>Мы зарегистрировались на нескольких известных топах и теперь, если вы хотите помочь нашему с вами проекту стать более популярным, 
+					то пройдите по указанным ниже ссылкам и проголосуйте за нас:</p>
+
+<a href="http://topcraft.ru/servers/4485" target="_blank"><img src="./main_files/tops.png"></a>
+<a href="http://mctop.su/rating/project/1382" target="_blank"><img src="./main_files/1382"></a>
+<a href="http://mctop.pro/vote/2083-vote.html" target="_blank"><img src="./main_files/3.png" alt="Проголосуй!"></a>
+
+
+					<p>Голосовать вы можете каждые 24 часа на каждом сайте. За каждый голос вы будете получать <a href="http://forum.minecraft-galaxy.ru/wiki/677" class="wikilink">очки</a>, которые можно 
+					обменять у NPC <a href="http://forum.minecraft-galaxy.ru/wiki/678" class="wikilink">Банкир</a> на приятные подарки. 
+					<br> P.S. Перед голосованием обязательно указывайте свой игровой ник, иначе очки не будут начислены.</p><p>
+					</p><p><a href="http://forum.minecraft-galaxy.ru/blog/77">Подробнее</a></p>
+				</div>
+			</div>
+			
+			<div class="block-content">
+				<h2 class="main-title">
+					Атлантида
+				</h2>
+				<div class="features">
+					<p><img src="./main_files/0DFM2c3Owd" alt="Атлантида"></p>
+					<p>Жители Атлантиды готовы поделиться уникальной пылью для создания новых ламп за небольшое вознаграждение.</p>
+					<p><a href="http://forum.minecraft-galaxy.ru/blog/66">Подробнее</a></p>
+				</div>
+			</div>
+			
+			<div class="block-content">
+				<h2 class="main-title">
+					Последние темы на форуме
+				</h2>
+				<div class="last-topics">
+					<table class="topics"><tbody><tr><th class="icon"></th><th class="name">Название</th><th class="author">Автор</th><th class="counter">Ответов</th></tr><tr><td class="author-row"></td><td class="text-row"><a class="" href="http://forum.minecraft-galaxy.ru/topic/123631" title="" target="">Пасха</a></td><td class="author-row"><div><a href="http://forum.minecraft-galaxy.ru/profilemain/521617" class="user-link girls" onmouseover="showtip(1, 521617, event)" onmouseout="hidetip()">vania_201_1</a></div></td><td class="author-row">21</td></tr><tr><td class="author-row"></td><td class="text-row"><a class="" href="http://forum.minecraft-galaxy.ru/topic/123634" title="" target="">MCGL не воспринимает видеоадаптер</a></td><td class="author-row"><div><a href="http://forum.minecraft-galaxy.ru/profilemain/408803" class="user-link platinum" onmouseover="showtip(1, 408803, event)" onmouseout="hidetip()">_DarkMooN_</a></div></td><td class="author-row">18</td></tr><tr><td class="author-row"><img src="./main_files/topic_1.png" alt=""></td><td class="text-row"><a class="" href="http://forum.minecraft-galaxy.ru/topic/123549" title="" target="">Глобальная проблема MCGL 2</a></td><td class="author-row"><div><a href="http://forum.minecraft-galaxy.ru/profilemain/51344" class="user-link vip" onmouseover="showtip(1, 51344, event)" onmouseout="hidetip()">dronzh1997</a></div></td><td class="author-row">17</td></tr><tr><td class="author-row"></td><td class="text-row"><a class="" href="http://forum.minecraft-galaxy.ru/topic/123635" title="" target="">БАК</a></td><td class="author-row"><div><a href="http://forum.minecraft-galaxy.ru/profilemain/249736" class="user-link vip" onmouseover="showtip(1, 249736, event)" onmouseout="hidetip()">magar20</a></div></td><td class="author-row">2</td></tr><tr><td class="author-row"><img src="./main_files/topic_2.png" alt=""></td><td class="text-row"><a class="" href="http://forum.minecraft-galaxy.ru/topic/123529" title="" target="">Стримы на канале GameXplore</a></td><td class="author-row"><div><a href="http://forum.minecraft-galaxy.ru/profilemain/648807" class="user-link premium" onmouseover="showtip(1, 648807, event)" onmouseout="hidetip()">GameXplore</a></div></td><td class="author-row">31</td></tr></tbody></table>					<p><a href="http://forum.minecraft-galaxy.ru/forum/0">Все темы</a></p>
+				</div>
+			</div>
+			<div class="news-list">
+				<h2 class="main-title">
+					Последние новости сервера Minecraft Galaxy
+				</h2>
+				<div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/105">Анонс к обновлению</a></div>
+					<div class="description"> <img class="post-image" src="./main_files/8c5Mmz7fa3"><br><br>Немного подробностей о том, как у нас идет работа над новыми игровыми режимами.<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/104">Тестирование крепости на Clans</a></div>
+					<div class="description"> Запущено тестирование осады новой крепости на сервере Clans<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/103">День защитника Отечества</a></div>
+					<div class="description"> Поздравляем с этим замечательным днем мужскую половину галактики!<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/102">Объединение планет группы Advance и тест материализатора</a></div>
+					<div class="description"> <img class="post-image" src="./main_files/Wek0MDbEsf"><br><br>Мы продолжаем работать над выпуском тех вещей, которые давно все ждали.<br>Вас ожидают цветные деревья, материализатор, объеденение серверов, изменение системы аренды, а также мелкие нововведения и исправления.<br>Ещё мы оговорим немного о ближайшем году.<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/101">Тестирование крепости на Zeus</a></div>
+					<div class="description"> Запущено тестирование осады новой крепости на сервере Zeus<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/100">Ледяное царство</a></div>
+					<div class="description"> <img class="post-image" src="./main_files/DNBusSDJ77"><br><br>Ученые выяснили, что из-за наступления зимы и сильного похолодания варвары из "Ледяного царства" вновь начали массовое вторжение в галактику! Они не могут прийти летом, весной или осенью т.к для них непереносимо тепло , но они не теряют времени и замышляют как испортить праздник. Судя по данным галактической разведки - на этот раз у них есть "секретное оружие"!<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/99">Крепости и Улучшение работы клиента</a></div>
+					<div class="description"> Мы продолжаем идти по намеченному плану разработки, но в довесок мы делаем упор на то, что очень важно для привлечения новых игроков. Занимаемся улучшением игрового процесса и исправлением самых неприятных игровых багов.<br><br><img class="post-image" src="./main_files/SAJNn8LS4E"><br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/98">Хэллоуин</a></div>
+					<div class="description"> <img class="post-image" src="./main_files/qrtLo3D0q5"><br><br>Только в эту ночь жизнь в Галактике затихает. На планетах повсеместно отключают любые источники света, жители стараются не покидать свои жилища, запирая наглухо ставни и двери...<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/97">Комфортная игра</a></div>
+					<div class="description"> Изменения связанные с улучшением самого процесса игры и баланса обсидиана.<br><br><img class="post-image" src="./main_files/TX62HA2Qld"><br><br>Плюс немного о процессе разработки<br></div>
+					
+					</div></div><div class="item"><div class="border">
+					<div class="title"><a href="http://forum.minecraft-galaxy.ru/blog/96">Ответы на некоторые вопросы от игроков</a></div>
+					<div class="description"> <a target="_blank" href="http://forum.minecraft-galaxy.ru/blog/96"><img class="post-image" src="./main_files/jRzMeJVbfQ"></a><br><br>Совсем недавно <img src="./main_files/user.png"> <a href="http://minecraft-galaxy.ru/profilemain/566333" onmouseover="showtip(1, 566333, event)" onmouseout="hidetip()" class="premium">ClocwerC</a> собирал вопросы от пользователей на которые мы ответили.<br>В этом видео вы можете ознакомиться с ними.<br><br><font color="#99CC00">Спасибо что переживаете за проект!</font><br><br>Мы, в свою очередь, постараемся сделать все возможное, <br>для улучшения нашей любимой игры.<br></div>
+					
+					</div></div>				<p><a href="http://forum.minecraft-galaxy.ru/blog/">Все новости</a></p>
+			</div>
+		</div>
+		<div class="right-block">
+			
+			<div class="bann-block">
+				<div class="features-gallery">
+                                    <!-- img src="/img/mainb/13.png" width="200" alt=""/ -->
+					
+					
+					
+                                         <!--img src="/img/mainb/14.png" width="200" alt=""/-->
+					
+					
+                                        <!--img src="/img/mainb/12.png" width="200" alt=""/-->
+				<div class="first-list" style="background-image: url(&quot;/img/mainb/regbist.png&quot;);"></div><div class="second-list" style="display: none;"><div class="tail" style="background-position: 0px 0px; left: 0px; top: 0px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -50px 0px; left: 50px; top: 0px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -100px 0px; left: 100px; top: 0px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -150px 0px; left: 150px; top: 0px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: 0px -50px; left: 0px; top: 50px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -50px -50px; left: 50px; top: 50px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -100px -50px; left: 100px; top: 50px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -150px -50px; left: 150px; top: 50px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: 0px -100px; left: 0px; top: 100px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -50px -100px; left: 50px; top: 100px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -100px -100px; left: 100px; top: 100px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -150px -100px; left: 150px; top: 100px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: 0px -150px; left: 0px; top: 150px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -50px -150px; left: 50px; top: 150px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -100px -150px; left: 100px; top: 150px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -150px -150px; left: 150px; top: 150px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: 0px -200px; left: 0px; top: 200px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -50px -200px; left: 50px; top: 200px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -100px -200px; left: 100px; top: 200px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div><div class="tail" style="background-position: -150px -200px; left: 150px; top: 200px; background-image: url(&quot;/img/mainb/lavagolem.png&quot;); display: none;"></div></div></div>
+			</div>
+			<div class="server-list">
+			<h2 class="main-title">Игроков онлайн:</h2>
+					<div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/0/"><span class="server-name">Main</span><span class="peoples "><span class="current">2</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/0/"><span class="server-name">Guest</span><span class="peoples "><span class="current">4</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/0/"><span class="server-name">DemoPlanet</span><span class="peoples "><span class="current">4</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/0/"><span class="server-name">Hunter</span><span class="peoples "><span class="current">15</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/0/"><span class="server-name">LittleBigPlanet</span><span class="peoples "><span class="current">2</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/0/"><span class="server-name">MinerPlanet</span><span class="peoples "><span class="current">1</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/0/"><span class="server-name">Clans</span><span class="peoples "><span class="current">3</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/0/"><span class="server-name">MonkeyPlanet</span><span class="peoples "><span class="current">7</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/0/"><span class="server-name">Pirate station</span><span class="peoples "><span class="current">10</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/0/"><span class="server-name">Nano</span><span class="peoples "><span class="current">54</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/0/"><span class="server-name">Rookie</span><span class="peoples "><span class="current">3</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/0/"><span class="server-name">Newbie</span><span class="peoples "><span class="current">4</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/0/"><span class="server-name">Build</span><span class="peoples "><span class="current">2</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/0/"><span class="server-name">Pacific</span><span class="peoples "><span class="current">0</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/0/"><span class="server-name">Novice</span><span class="peoples "><span class="current">1</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/0/"><span class="server-name">Team</span><span class="peoples "><span class="current">0</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/0/"><span class="server-name">Farm</span><span class="peoples "><span class="current">7</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/0/"><span class="server-name">Prometeus</span><span class="peoples "><span class="current">6</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/0/"><span class="server-name">Laboratory</span><span class="peoples "><span class="current">0</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/0/"><span class="server-name">Zeus</span><span class="peoples "><span class="current">38</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/0/"><span class="server-name">Dragon nest</span><span class="peoples "><span class="current">1</span>/200</span></a></div><div class="item"><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/0/"><span class="server-name">Atlantida</span><span class="peoples "><span class="current">8</span>/200</span></a></div>					<p>Всего играющих: 172</p>				
+			</div>
+			<div class="events-block">
+				<h2 class="main-title">События</h2>
+				<div class="time">2018-04-05 20:38:03</div><div class="twit-text"> Уважаемые жители галактики, приглашаем вас поучаствовать в <a target="_blank" href="http://forum.minecraft-galaxy.ru/hpost/91102">Конкурсе рисунков</a>. 
+<br>Для участия необходимо состоять в сообществе <a target="_blank" href="http://forum.minecraft-galaxy.ru/hmain/253">Ивенты Minecraft Galaxy</a>.<br></div><div class="time">2018-03-12 16:23:50</div><div class="twit-text"> Уважаемые жители галактики, приглашаем вас поучаствовать в <a target="_blank" href="http://forum.minecraft-galaxy.ru/hpost/90762">Конкурсе рассказов</a>.
+<br>Для участия необходимо состоять в сообществе <a target="_blank" href="http://forum.minecraft-galaxy.ru/hmain/253">Ивенты Minecraft Galaxy</a>.<br></div><div class="time">2018-03-08 13:15:37</div><div class="twit-text"> Поздравляем всех девушек с этим замечательным женским днем <img src="./main_files/icon_smile.gif"> Подарки к празднику на этот раз поможет собрать Портал, который объяснит, что и как нужно делать!<br></div><div class="time">2018-03-01 18:01:11</div><div class="twit-text"> Уважаемые жители галактики, приглашаем вас поучаствовать в <a target="_blank" href="http://forum.minecraft-galaxy.ru/hpost/90587">Творческом конкурсе</a>
+<br>Для участия необходимо состоять в сообществе <a target="_blank" href="http://forum.minecraft-galaxy.ru/hmain/253">Ивенты Minecraft Galaxy</a>.<br></div><div class="time">2018-02-24 09:35:39</div><div class="twit-text"> Только 24 и 25 февраля в магазине Gold можно получить три вида солдатиков абсолютно бесплатно. Для этого один из уровней аккаунта должен быть не менее 13. Успейте собрать свою армию!<br></div>				<div><a href="http://forum.minecraft-galaxy.ru/lastevents/">Вся лента</a></div>
+			</div>
+			<script src="./main_files/openapi.js.Без названия" type="text/javascript"></script>
+			<div class="block-net">
+				<div id="vk_groups" style="width: 220px; height: 400px; background: none;"><iframe name="fXD61b57" frameborder="0" src="./main_files/widget_community.html" width="220" height="400" scrolling="no" id="vkwidget1" style="overflow: hidden; height: 400px;"></iframe></div>
+				<script type="text/javascript">
+					VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "400"}, 23775954);
+				</script>
+				
+				 <span class="soc">
+					<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 38px; height: 24px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 38px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1523192512486" name="I0_1523192512486" src="./main_files/fastbutton.html" data-gapiattached="true" title="G+"></iframe></div>
+					<!--<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+					<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> -->
+				</span>
+			
+			</div>
+			
+			
+		</div>
+							<div class="clear"></div>
+				</div>
+				<div style="height: 10px;"></div>
+			</div>
+			<div class="content-bottom">
+				<div class="monster-three"></div>
+				<div class="monster-four"></div>
+				<div class="plus-12"></div>
+				<div class="copy">контент имеет возрастные ограничения<br>
+				copyright 2009-2017 <br>by minecraft galaxy team</div>
+				<div class="metrika">
+					<!--Rating@Mail.ru counter--> 
+					<script language="javascript"><!--
+					d=document;var a='';a+=';r='+escape(d.referrer);js=10;//--></script> 
+					<script language="javascript1.1"><!--
+					a+=';j='+navigator.javaEnabled();js=11;//--></script> 
+					<script language="javascript1.2"><!--
+					s=screen;a+=';s='+s.width+'*'+s.height;
+					a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth);js=12;//--></script> 
+					<script language="javascript1.3"><!--
+					js=13;//--></script><script language="javascript" type="text/javascript"><!--
+					d.write('<a href="http://top.mail.ru/jump?from=1990623" target="_top">'+
+					'<img src="http://df.c5.be.a1.top.mail.ru/counter?id=1990623;t=47;js='+js+
+					a+';rand='+Math.random()+'" alt="Рейтинг@Mail.ru" border="0" '+
+					'height="31" width="88"><\/a>');if(11<js)d.write('<'+'!-- ');//--></script><a href="http://top.mail.ru/jump?from=1990623" target="_top"><img src="./main_files/counter" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--  
+					<noscript><a target="_top" href="http://top.mail.ru/jump?from=1990623"> 
+					<img src="http://df.c5.be.a1.top.mail.ru/counter?js=na;id=1990623;t=47" 
+					height="31" width="88" border="0" alt="Рейтинг@Mail.ru"></a></noscript> 
+					<script language="javascript" type="text/javascript"><!--
+					if(11<js)d.write('--'+'>');//--> 
+					<!--// Rating@Mail.ru counter-->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter12458926 = new Ya.Metrika({
+                    id:12458926,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>&lt;div&gt;&lt;img src="https://mc.yandex.ru/watch/12458926" style="position:absolute; left:-9999px;" alt="" /&gt;&lt;/div&gt;</noscript>
+<!-- /Yandex.Metrika counter --> 
+	
+				</div>
+			</div>
+			
+		</div>
+		<div id="smiliesdlg"></div>
+	
+	
+				
+				<iframe name="oauth2relay306539868" id="oauth2relay306539868" src="./main_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
